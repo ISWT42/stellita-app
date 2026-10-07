@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#FFD700" />
+
+    <!-- Apply saved theme before first paint to avoid a flash of the wrong theme -->
+    <script>
+      try {
+        if (localStorage.getItem('stellita_theme') === 'dark')
+          document.documentElement.classList.add('stx-dark')
+      } catch (e) {}
+    </script>
+
+    <!-- Primary SEO -->
+    <title>Stellita — Ship on Stellar without a line of Rust</title>
+    <meta
+      name="description"
+      content="Stellita is the AI builder for Stellar. Describe a dApp in plain language and Stellita generates audited OpenZeppelin Soroban smart contracts, deploys them to Stellar testnet in one click, and wires up a working React frontend connected to your wallet — no Rust, no CLI, no setup."
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="keywords" content="Stellita, Stellar, Soroban, smart contracts, dApp builder, AI, OpenZeppelin, Soroswap, testnet, no-code, Freighter, Web3" />
+    <link rel="canonical" href="https://www.stellita.app/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Stellita" />
+    <meta property="og:title" content="Stellita — Ship on Stellar without a line of Rust" />
+    <meta
+      property="og:description"
+      content="Describe it, we deploy. Stellita's AI turns a prompt into an audited Soroban contract on Stellar testnet plus a working frontend — no Rust, no CLI, no setup."
+    />
+    <meta property="og:url" content="https://www.stellita.app/" />
+    <meta property="og:image" content="https://www.stellita.app/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Stellita — ship on Stellar without a line of Rust" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Stellita — Ship on Stellar without a line of Rust" />
+    <meta
+      name="twitter:description"
+      content="Describe it, we deploy audited Soroban contracts to Stellar testnet in one click — plus a working frontend. The AI dApp builder for Stellar."
+    />
+    <meta name="twitter:image" content="https://www.stellita.app/og.png" />
+    <meta name="twitter:image:alt" content="Stellita — ship on Stellar without a line of Rust" />
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Stellita",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Web",
+        "description": "Stellita is the AI builder for Stellar. Describe a dApp in plain language and it generates, compiles and deploys audited OpenZeppelin Soroban smart contracts to testnet, then builds a working frontend wired to your wallet — no Rust, no CLI.",
+        "url": "https://www.stellita.app/",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

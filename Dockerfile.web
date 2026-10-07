@@ -1,0 +1,18 @@
+# Frontend (Vite SPA) image — builds the static site and serves it with nginx.
+# Deploy as a SEPARATE Dokploy app from the backend (set Docker File Path to
+# "Dockerfile.web"). VITE_API_BASE is a public URL (it ends up in the client
+# bundle anyway), so it's baked at build time with a prod default.
+FROM node:22-slim AS build
+RUN corepack enable
+WORKDIR /app
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
+COPY . .
+ARG VITE_API_BASE=https://api.stellita.app
+ENV VITE_API_BASE=$VITE_API_BASE
+RUN pnpm build
+
+FROM nginx:alpine
+COPY --from=build /app/dist /usr/share/nginx/html
+COPY nginx.web.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80

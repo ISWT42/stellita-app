@@ -1,0 +1,101 @@
+@import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap');
+
+/* Stellita aesthetic: neobrutalist pixel-art. Cream canvas, #222 ink, #FFD700
+   accent, hard offset shadows, 2–2.5px borders. Poppins is the default UI
+   typeface, JetBrains Mono for code/addresses, Press Start 2P for small pixel
+   accent labels only. The user's generated app styles itself inside Sandpack and
+   is unaffected by anything here.
+
+   COLOR SYSTEM (single source of truth): every UI color is a CSS variable so the
+   whole app themes at once. Components reference them via Tailwind arbitrary
+   values, e.g. `bg-[var(--bg)]`, `text-[var(--ink)]`, `border-[var(--ink)]`,
+   `shadow-[3px_3px_0_var(--shadow)]`. Dark mode = the same vars re-pointed under
+   the `.stx-dark` class on <html>. Palette is the official Stellita design doc.
+   Note `--gold` stays gold in dark on purpose — the accent never changes. */
+@theme {
+  --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+:root {
+  color-scheme: light;
+  --gold: #ffd700;
+  --gold-dk: #d9a400;
+  --gold-soft: #fff3c4;
+  --gink: #222222; /* ink used ON gold surfaces */
+  --bg: #fffdf5; /* app canvas */
+  --bg2: #fff9e0; /* sidebar / raised canvas */
+  --surface: #ffffff; /* cards, panels, inputs */
+  --surface2: #fbf8ec;
+  --ink: #222222; /* primary text + borders */
+  --muted: #6b6659;
+  --muted2: #8a8266;
+  --muted3: #a89f80;
+  --placeholder: #9a9384;
+  --marquee: #c9bf99;
+  --line-soft: #cfc7ac;
+  --soon-ink: #7a6a1a;
+  --soon-line: #e8d98a;
+  --shadow: #222222; /* hard offset shadow color */
+  --nav-bg: rgba(255, 253, 245, 0.85);
+  --danger: #dc2626; /* error text / borders / icons (adapts for dark) */
+}
+
+.stx-dark {
+  color-scheme: dark;
+  --gold-dk: #ffdf46;
+  --gold-soft: #2c2612;
+  --gink: #1a1710;
+  --bg: #0f0d09;
+  --bg2: #161209;
+  --surface: #1b1610;
+  --surface2: #221c12;
+  --ink: #f3ead0;
+  --muted: #bcb090;
+  --muted2: #9c9278;
+  --muted3: #7c7358;
+  --placeholder: #8c8368;
+  --marquee: #4c4736;
+  --line-soft: #4c4534;
+  --soon-ink: #ecd98f;
+  --soon-line: #5c5029;
+  --shadow: #000000;
+  --nav-bg: rgba(15, 13, 9, 0.86);
+  --danger: #f87171; /* lighter red so it stays legible on the dark surface */
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--gink);
+}
+
+/* Small pixel accent label — Press Start 2P, sparingly */
+.st-pixel {
+  font-family: 'Press Start 2P', monospace;
+}
+.st-pixelated {
+  image-rendering: pixelated;
+}
+
+/* Inline protocol logos (Soroswap / DeFindex) scale to their box and adopt the
+   theme text color via currentColor. */
+.stx-inline-logo svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}

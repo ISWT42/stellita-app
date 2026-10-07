@@ -1,0 +1,136 @@
+/* Marketing pages styling.
+
+   The landing ("/") uses the new Stellita brand (scoped under .st-marketing):
+   Poppins + Press Start 2P, cream canvas, neobrutalist yellow accent.
+
+   The remaining marketing sub-pages (contracts / templates / pricing / faq)
+   share the Stellita brand too (scoped under .xlm-marketing): Poppins body,
+   Press Start 2P pixel eyebrows, cream canvas, neobrutalist yellow accent,
+   hard offset shadows. Both scopes are self-contained so nothing leaks into the
+   app. Inline styles cover layout; this file covers what inline can't: fonts,
+   keyframes, :hover, ::selection, responsive. */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Press+Start+2P&display=swap');
+
+.xlm-marketing {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+.xlm-marketing * { box-sizing: border-box; }
+.xlm-marketing ::selection { background: var(--gold); color: var(--ink); }
+
+@keyframes xlmMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes xlmGlow { 0%, 100% { opacity: 0.45; } 50% { opacity: 0.85; } }
+@keyframes xlmFadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes xlmPopIn { from { opacity: 0; transform: scale(0.985) translateY(12px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+
+.xlm-fadeup { opacity: 0; animation: xlmFadeUp .7s ease forwards; }
+.xlm-popin { opacity: 0; animation: xlmPopIn .7s ease .15s forwards; }
+
+@keyframes xlmPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+.xlm-skel { background: #F0EBDD; border-radius: 8px; animation: xlmPulse 1.4s ease-in-out infinite; }
+
+/* Hover patterns — Stellita neobrutalist hard-shadow lift */
+.xlm-navlink { color: var(--muted); cursor: pointer; font-weight: 600; transition: color .15s ease; }
+.xlm-navlink:hover { color: var(--ink); }
+
+.xlm-pill { transition: transform .12s ease, box-shadow .12s ease; }
+.xlm-pill:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--shadow); }
+
+.xlm-chip { transition: transform .12s ease, box-shadow .12s ease; }
+.xlm-chip:hover { transform: translate(-1px, -1px); box-shadow: 3px 3px 0 var(--gold); }
+
+.xlm-card { transition: transform .12s ease, box-shadow .12s ease; }
+.xlm-card:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--gold); }
+
+.xlm-cardext { transition: transform .12s ease, box-shadow .12s ease; }
+.xlm-cardext:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--gold); }
+
+.xlm-bento { transition: transform .12s ease, box-shadow .12s ease; }
+.xlm-bento:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--shadow); }
+
+.xlm-soft { transition: transform .12s ease, box-shadow .12s ease, background .15s ease; }
+.xlm-soft:hover { background: var(--gold-soft); transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--gold); }
+
+.xlm-iconbtn { transition: background .15s ease; }
+.xlm-iconbtn:hover { background: var(--gold-soft); }
+
+/* Responsive: collapse grids + scale type on narrow screens */
+@media (max-width: 900px) {
+  .xlm-hide-mobile { display: none !important; }
+  .xlm-grid-2, .xlm-grid-3 { grid-template-columns: 1fr !important; }
+  .xlm-bento-tall { grid-row: auto !important; min-height: 0 !important; }
+  .xlm-h1 { font-size: 44px !important; }
+  .xlm-h2 { font-size: 34px !important; }
+  .xlm-cta-h2 { font-size: 42px !important; }
+}
+
+/* ==========================================================================
+   STELLITA landing — new brand. Scoped under .st-marketing. Neobrutalist:
+   cream canvas, Poppins body, Press Start 2P pixel eyebrows, hard offset
+   shadows, 2–2.5px borders, hover lift. Faithful to the "Stellita Landing"
+   design doc.
+   ========================================================================== */
+
+.st-marketing {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+.st-marketing * { box-sizing: border-box; }
+.st-marketing ::selection { background: var(--gold); color: var(--ink); }
+/* On yellow surfaces the default yellow highlight is invisible → use white so
+   selected text stays readable (e.g. the "Prompt. Deploy. Done." bento card). */
+.st-onyellow ::selection { background: var(--surface); color: var(--ink); }
+.st-onyellow ::-moz-selection { background: var(--surface); color: var(--ink); }
+.st-pixel { font-family: 'Press Start 2P', monospace; }
+.st-pixelated { image-rendering: pixelated; }
+
+@keyframes stMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes stBob { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-14px) rotate(2deg); } }
+@keyframes stBobSmall { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+@keyframes stPop { from { opacity: 0; transform: scale(0.96) translateY(14px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+@keyframes stUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes stIn { from { transform: translateY(-6px); } to { transform: translateY(0); } }
+@keyframes stSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+.st-up { opacity: 0; animation: stUp .6s ease forwards; }
+.st-up-1 { opacity: 0; animation: stUp .7s ease .05s forwards; }
+.st-up-2 { opacity: 0; animation: stUp .6s ease .3s forwards; }
+.st-pop { opacity: 0; animation: stPop .7s ease .15s forwards; }
+
+/* Hover patterns ported from the design's style-hover */
+.st-navlink { color: var(--muted); cursor: pointer; font-weight: 600; transition: color .15s ease; }
+.st-navlink:hover { color: var(--ink); }
+
+/* Hard-shadow lift: border stays, shadow grows, element nudges up-left */
+.st-lift { transition: transform .12s ease, box-shadow .12s ease; }
+.st-lift-dark:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--shadow); }
+.st-lift-dark-lg:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--shadow); }
+.st-lift-yellow:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--gold); }
+.st-lift-yellow-lg:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--gold); }
+.st-lift-yellow-sm:hover { transform: translate(-1px, -1px); box-shadow: 3px 3px 0 var(--gold); }
+
+/* Soft-fill hover (model selector / mic) */
+.st-softfill { transition: background .15s ease; }
+.st-softfill:hover { background: var(--gold-soft) !important; }
+
+.st-marketing textarea::placeholder { color: var(--placeholder); font-weight: 500; opacity: 1; }
+
+/* Responsive: collapse grids + scale type on narrow screens */
+@media (max-width: 900px) {
+  .st-hide-mobile { display: none !important; }
+  .st-grid-2, .st-grid-3 { grid-template-columns: 1fr !important; }
+  .st-bento-tall { grid-row: auto !important; min-height: 0 !important; }
+  .st-h1 { font-size: 42px !important; }
+  .st-h2 { font-size: 34px !important; }
+  .st-cta-h2 { font-size: 42px !important; }
+}
