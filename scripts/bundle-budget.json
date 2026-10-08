@@ -1,0 +1,8 @@
+{
+  "maxEntryChunkBytes": 1340000,
+  "maxTotalJsBytes": 1690000,
+  "baseline": {
+    "entryChunkBytes": 1303435,
+    "totalJsBytes": 1643840
+  }
+}

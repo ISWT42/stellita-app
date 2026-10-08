@@ -11,6 +11,7 @@
     "start": "tsx server/index.ts",
     "seed:templates": "tsx scripts/seed-templates.ts",
     "build": "tsc -b && vite build",
+    "check:bundle": "tsx scripts/check-bundle.ts",
     "typecheck": "tsc -b && tsc -p server/tsconfig.json --noEmit",
     "lint": "eslint .",
     "preview": "vite preview"
