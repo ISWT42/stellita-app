@@ -11,6 +11,7 @@ import { useIsMobile } from '../hooks/useIsMobile'
 import type { Version } from '../projects/store'
 import { fetchShared } from '../lib/backend'
 import { useFreighterBridge } from '../wallet/freighterBridge'
+import { useMarketingSeo } from '../marketing/seo'
 import { Logo, Wordmark } from '../marketing/shared'
 import type { ChatMessage, DeployedContract, FileTree } from '../../shared/types'
 
@@ -43,6 +44,13 @@ export function SharedProject() {
   // Answer Freighter requests forwarded from the preview iframe — same bridge the
   // authed shell uses, so wallet connect works on the shared page too.
   useFreighterBridge()
+
+  useMarketingSeo({
+    title: data?.name ? `${data.name} — Stellita` : 'Shared Project — Stellita',
+    description: 'Public read-only view of a shared Stellita project.',
+    path: `/p/${token || ''}`,
+    indexable: false,
+  })
 
   useEffect(() => {
     if (!token) return
