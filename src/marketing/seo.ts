@@ -24,35 +24,49 @@ function setCanonical(href: string) {
 }
 
 /**
- * Client-side SEO for the marketing routes: title, description, canonical, and
- * Open Graph / Twitter cards. A SPA can't pre-render, but crawlers that execute
- * JS (and link unfurlers via the static index.html defaults) pick these up.
+ * Client-side SEO for marketing and shared routes: title, description, canonical,
+ * robots indexing directive, and Open Graph / Twitter cards.
  */
 export function useMarketingSeo({
   title,
   description,
   path,
+  indexable = true,
 }: {
   title: string
-  description: string
+  description?: string
   path: string
+  indexable?: boolean
 }) {
   useEffect(() => {
     const url = `${SITE}${path}`
+    const prevTitle = document.title
+    const prevRobots =
+      document.head.querySelector<HTMLMetaElement>('meta[name="robots"]')?.getAttribute('content') ?? 'index, follow'
+    const prevCanonical =
+      document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]')?.getAttribute('href') ?? `${SITE}/`
+
     document.title = title
-    setMeta('name', 'description', description)
+    if (description) setMeta('name', 'description', description)
     setCanonical(url)
+    setMeta('name', 'robots', indexable ? 'index, follow' : 'noindex, follow')
 
     setMeta('property', 'og:type', 'website')
     setMeta('property', 'og:site_name', 'Stellita')
     setMeta('property', 'og:title', title)
-    setMeta('property', 'og:description', description)
+    if (description) setMeta('property', 'og:description', description)
     setMeta('property', 'og:url', url)
     setMeta('property', 'og:image', OG_IMAGE)
 
     setMeta('name', 'twitter:card', 'summary_large_image')
     setMeta('name', 'twitter:title', title)
-    setMeta('name', 'twitter:description', description)
+    if (description) setMeta('name', 'twitter:description', description)
     setMeta('name', 'twitter:image', OG_IMAGE)
-  }, [title, description, path])
+
+    return () => {
+      document.title = prevTitle
+      setMeta('name', 'robots', prevRobots)
+      setCanonical(prevCanonical)
+    }
+  }, [title, description, path, indexable])
 }
